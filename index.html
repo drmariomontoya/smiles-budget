@@ -131,7 +131,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 .btn-confirm:hover{background:var(--gold-l)}
 .btn-cancel{flex:1;padding:10px;border-radius:8px;background:transparent;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:14px;border:1px solid var(--border);cursor:pointer;transition:all .15s}
 .btn-cancel:hover{border-color:var(--gold-d);color:var(--t1)}
-.toast{position:fixed;bottom:90px;right:16px;background:var(--ink3);border:1px solid var(--border-s);border-radius:var(--r);padding:12px 18px;font-size:13px;color:var(--t1);box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:9999;transform:translateY(80px);opacity:0;transition:all .25s ease;pointer-events:none;display:flex;align-items:center;gap:8px}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--ink3);border:1px solid var(--border-s);border-radius:var(--r);padding:12px 18px;font-size:13px;color:var(--t1);box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:9999;transform:translateY(80px);opacity:0;transition:all .25s ease;pointer-events:none;display:flex;align-items:center;gap:8px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast i{font-size:16px;color:var(--ok)}
 footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);background:var(--ink)}
@@ -141,8 +141,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
 .period-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end}
 .camp-spend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--ink);border:1px solid var(--border);border-radius:var(--r);margin-bottom:6px}
 .progress-mini{height:4px;background:var(--ink3);border-radius:2px;overflow:hidden;margin-top:4px}
-.progress-mini-fill{height:100%;border-radius:2px;transition:width .4px}
-/* LOGIN */
+.progress-mini-fill{height:100%;border-radius:2px;transition:width .4s}
 #login-screen{position:fixed;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}
 .login-card{background:var(--ink2);border:1px solid var(--border-s);border-radius:var(--rl);padding:36px 32px;width:100%;max-width:360px;text-align:center}
 .login-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gold);margin-bottom:4px}
@@ -154,7 +153,6 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
 .login-btn{width:100%;padding:12px;border-radius:8px;background:var(--gold);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;border:none;cursor:pointer;margin-top:8px;transition:all .15s}
 .login-btn:hover{background:var(--gold-l)}
 .login-error{font-size:12px;color:var(--danger);margin-top:10px;display:none}
-/* MOBILE BOTTOM NAV */
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--ink2);border-top:1px solid var(--border);z-index:100;padding:0 8px 8px}
 .mobile-nav-inner{display:flex;justify-content:space-around;align-items:stretch}
 .mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 8px 4px;cursor:pointer;flex:1;border-radius:var(--r);transition:all .15s;border:none;background:transparent;color:var(--t3)}
@@ -162,28 +160,8 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
 .mob-nav-item span{font-size:9px;letter-spacing:.05em;text-transform:uppercase;font-weight:500}
 .mob-nav-item.active{color:var(--gold)}
 .mob-nav-item:hover{color:var(--gold-l)}
-/* RESPONSIVE */
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}.forecast-grid{grid-template-columns:repeat(2,1fr)}.period-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:680px){
-  .sidebar{display:none}
-  .mobile-nav{display:block}
-  header{padding:12px 16px}
-  .main{padding:16px 14px 90px}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .brand{font-size:16px}
-  .budget-pill{font-size:10px;padding:4px 10px}
-  .sync-indicator{display:none}
-  .page-title{font-size:20px}
-  .data-table{font-size:12px}
-  .data-table th,.data-table td{padding:8px 10px}
-  .table-wrap{overflow-x:auto}
-  .period-grid{grid-template-columns:1fr}
-  .forecast-grid{grid-template-columns:1fr}
-  .f-val{font-size:17px}
-  .modal{padding:20px 16px;width:95%}
-  .camp-spend-row{flex-direction:column;align-items:flex-start;gap:8px}
-  .camp-spend-row>div:last-child{margin-left:0;width:100%;display:flex;justify-content:space-between;align-items:center}
-}
+@media(max-width:680px){.sidebar{display:none}.mobile-nav{display:block}header{padding:12px 16px}.main{padding:16px 14px 90px}.stats-grid{grid-template-columns:1fr 1fr}.brand{font-size:16px}.budget-pill{font-size:10px;padding:4px 10px}.sync-indicator{display:none}.page-title{font-size:20px}.data-table{font-size:12px}.data-table th,.data-table td{padding:8px 10px}.table-wrap{overflow-x:auto}.period-grid{grid-template-columns:1fr}.forecast-grid{grid-template-columns:1fr}.f-val{font-size:17px}.modal{padding:20px 16px;width:95%}.camp-spend-row{flex-direction:column;align-items:flex-start;gap:8px}.camp-spend-row>div:last-child{margin-left:0;width:100%;display:flex;justify-content:space-between;align-items:center}}
 </style>
 </head>
 <body>
@@ -197,11 +175,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
   </div>
 </div>
-<div id="loading-screen">
-  <div class="brand">Dr. Mario Montoya</div>
-  <div class="loader"></div>
-  <div class="sub">Conectando con Firebase...</div>
-</div>
+<div id="loading-screen"><div class="brand">Dr. Mario Montoya</div><div class="loader"></div><div class="sub">Conectando con Firebase...</div></div>
 <header>
   <div><div class="brand">Dr. Mario Montoya</div><div class="sub">Control de Presupuesto · Colombia</div></div>
   <div style="display:flex;align-items:center;gap:16px">
@@ -275,10 +249,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
       <div class="page-desc">Las campañas activas acumulan gasto automáticamente cada día desde la fecha de inicio del período.</div>
       <div class="alert-bar warn-alert" id="alert-85b"><i class="ti ti-alert-triangle"></i><span id="alert-85b-txt"></span></div>
       <div class="alert-bar danger-alert" id="alert-overb"><i class="ti ti-alert-circle"></i><span id="alert-overb-txt"></span></div>
-      <div class="section-hdr">
-        <div class="section-lbl">Campañas</div>
-        <button class="btn-add" onclick="openModal('campaign')"><i class="ti ti-plus"></i> Agregar campaña</button>
-      </div>
+      <div class="section-hdr"><div class="section-lbl">Campañas</div><button class="btn-add" onclick="openModal('campaign')"><i class="ti ti-plus"></i> Agregar campaña</button></div>
       <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Campaña</th><th>Fase</th><th style="text-align:center">Estado</th><th style="text-align:right">Diario (USD)</th><th style="text-align:right">Gastado real</th><th style="text-align:right">Proyec/período</th><th style="text-align:center">Escalar</th><th style="text-align:center">Acciones</th></tr></thead>
@@ -290,10 +261,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
     <div class="panel" id="panel-expenses">
       <div class="page-title">Gastos adicionales</div>
       <div class="page-desc">Herramientas, deudas Meta y brechas. Todos descuentan del presupuesto disponible.</div>
-      <div class="section-hdr">
-        <div class="section-lbl">Gastos registrados</div>
-        <button class="btn-add" onclick="openModal('expense')"><i class="ti ti-plus"></i> Agregar gasto</button>
-      </div>
+      <div class="section-hdr"><div class="section-lbl">Gastos registrados</div><button class="btn-add" onclick="openModal('expense')"><i class="ti ti-plus"></i> Agregar gasto</button></div>
       <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Descripción</th><th>Tipo</th><th style="text-align:right">Monto (USD)</th><th style="text-align:right">% budget</th><th style="text-align:center">Estado</th><th style="text-align:center">Acciones</th></tr></thead>
@@ -325,7 +293,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
     </div>
     <div class="panel" id="panel-calc">
       <div class="page-title">Calculadora de pauta diaria</div>
-      <div class="page-desc">¿Cuánto deberías gastar por día para alcanzar tu objetivo? Usa los días restantes del período activo.</div>
+      <div class="page-desc">¿Cuánto deberías gastar por día para alcanzar tu objetivo? Usa los días restantes del período.</div>
       <div style="background:var(--ink3);border:1px solid var(--border);border-radius:var(--rl);padding:24px;margin-bottom:20px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
           <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t2);margin-bottom:8px">Objetivo de gasto total (USD)</label><input type="number" id="calc-objetivo" min="0" step="100" placeholder="Ej. 15000" oninput="calcular()" style="width:100%;background:var(--ink);border:1px solid var(--border);border-radius:7px;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;padding:12px 14px;outline:none"></div>
@@ -369,10 +337,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
   <div class="modal">
     <div class="modal-title" id="modal-title">Agregar</div>
     <div id="modal-body"></div>
-    <div class="modal-btns">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-confirm" onclick="saveModal()">Guardar</button>
-    </div>
+    <div class="modal-btns"><button class="btn-cancel" onclick="closeModal()">Cancelar</button><button class="btn-confirm" onclick="saveModal()">Guardar</button></div>
   </div>
 </div>
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-text">Guardado</span></div>
@@ -447,13 +412,35 @@ const spentPct=Math.min(spent/TOTAL*100,100);const toolsPct=Math.min(toolsTotal/
 function calcular(){const objetivo=parseFloat(document.getElementById('calc-objetivo').value)||0;const left=daysLeft();const active=activeCamps();const paused=campaigns.filter(c=>c.status==='paused');const totalDaily=active.reduce((s,c)=>s+c.daily,0);const totalExp=expenses.reduce((s,e)=>s+e.amount,0);const available=TOTAL-totalExp-realSpent();document.getElementById('calc-dias-display').textContent=left?left+' días':'— días';if(!objetivo){document.getElementById('calc-resultado').style.display='none';document.getElementById('calc-empty').style.display='block';return;}document.getElementById('calc-resultado').style.display='block';document.getElementById('calc-empty').style.display='none';const dias=left||1;const diarioNecesario=objetivo/dias;const diff=diarioNecesario-totalDaily;const pctBudget=Math.round(objetivo/TOTAL*100);document.getElementById('calc-diario').textContent=fmt(diarioNecesario);document.getElementById('calc-diario-sub').textContent=fmt(objetivo)+' ÷ '+dias+' días restantes';document.getElementById('calc-diario').style.color=objetivo>available?'var(--danger)':objetivo>TOTAL*0.85?'var(--warn)':'var(--gold)';document.getElementById('calc-actual').textContent=fmt(totalDaily)+'/día';document.getElementById('calc-actual-camps').textContent=active.length+' activa'+(active.length!==1?'s':'')+(paused.length>0?' · '+paused.length+' pausada'+(paused.length!==1?'s':''):'');const diffEl=document.getElementById('calc-diff');const diffLbl=document.getElementById('calc-diff-label');diffEl.textContent=(diff>=0?'+':'')+fmt(diff)+'/día';diffEl.style.color=diff>0?'var(--warn)':diff<0?'var(--ok)':'var(--t1)';diffLbl.textContent=diff>0?'necesitas aumentar':diff<0?'puedes reducir':'estás en el objetivo';document.getElementById('calc-pct-budget').textContent=pctBudget+'%';document.getElementById('calc-pct-budget').style.color=pctBudget>=100?'var(--danger)':pctBudget>=85?'var(--warn)':'var(--ok)';document.getElementById('calc-pct-note').textContent='de '+fmt(TOTAL)+' presupuesto';const tablaEl=document.getElementById('calc-camps-tabla');const noEl=document.getElementById('calc-no-camps');if(!campaigns.length){tablaEl.style.display='none';noEl.style.display='block';}else{tablaEl.style.display='flex';noEl.style.display='none';let html='';if(active.length>0){html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ok);margin-bottom:6px">Campañas activas</div>';html+=active.map(c=>{const peso=totalDaily>0?(c.daily/totalDaily):1/active.length;const sugerido=diarioNecesario*peso;const delta=sugerido-c.daily;const barPct=Math.min(Math.round(peso*100),100);return'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div><div style="font-size:13px;font-weight:500;color:var(--t1)">'+c.name+'</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Actual: '+fmt(c.daily)+'/día · '+barPct+'% del total</div></div><div style="text-align:right"><div style="font-size:18px;font-weight:500;color:var(--gold-l)">'+fmt(sugerido)+'/día</div><div style="font-size:11px;color:'+(delta>=0?'var(--warn)':'var(--ok)')+';margin-top:2px">'+(delta>=0?'+':'')+fmt(delta)+'/día</div></div></div><div style="height:4px;background:var(--ink3);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+barPct+'%;background:var(--gold-d);border-radius:2px"></div></div></div>';}).join('');}if(paused.length>0){html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin:12px 0 6px">Campañas pausadas (no cuentan)</div>';html+=paused.map(c=>'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;opacity:.45"><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;font-weight:500;color:var(--t3)">'+c.name+'</div><div style="font-size:12px;color:var(--t3)">'+fmt(c.daily)+'/día · Pausada</div></div></div>').join('');}tablaEl.innerHTML=html;}const warnEl=document.getElementById('calc-warning');if(objetivo>available){warnEl.style.display='block';document.getElementById('calc-warning-txt').textContent='El objetivo de '+fmt(objetivo)+' supera el disponible restante ('+fmt(available)+'). Ajusta el objetivo.';}else{warnEl.style.display='none';}}
 window.calcular=calcular;
 function renderAll(){renderStats();renderCampaigns();renderExpenses();renderCampSpendList();const ap=document.querySelector('.panel.active');if(ap&&ap.id==='panel-forecast')renderTimeline();if(ap&&ap.id==='panel-calc')calcular();}
-let campaignsReady=false,expensesReady=false;
-function checkReady(){if(campaignsReady&&expensesReady){document.getElementById('loading-screen').style.display='none';renderAll();}}
-onSnapshot(collection(db,'campaigns'),(snapshot)=>{campaigns=snapshot.docs.map(d=>({id:d.id,...d.data()}));campaignsReady=true;checkReady();if(campaignsReady&&expensesReady)renderAll();},(err)=>{setSyncing('error');console.error(err);});
-onSnapshot(collection(db,'expenses'),(snapshot)=>{expenses=snapshot.docs.map(d=>({id:d.id,...d.data()}));expensesReady=true;checkReady();if(campaignsReady&&expensesReady)renderAll();},(err)=>{setSyncing('error');console.error(err);});
+// ─── FIREBASE LISTENERS — esperan a que el período esté listo ────
+let campaignsReady=false,expensesReady=false,periodReady=false;
+function checkReady(){
+  if(campaignsReady&&expensesReady&&periodReady){
+    document.getElementById('loading-screen').style.display='none';
+    renderAll();
+  }
+}
+onSnapshot(collection(db,'campaigns'),(snapshot)=>{
+  campaigns=snapshot.docs.map(d=>({id:d.id,...d.data()}));
+  campaignsReady=true;
+  checkReady();
+  if(campaignsReady&&expensesReady&&periodReady)renderAll();
+},(err)=>{setSyncing('error');console.error(err);});
+onSnapshot(collection(db,'expenses'),(snapshot)=>{
+  expenses=snapshot.docs.map(d=>({id:d.id,...d.data()}));
+  expensesReady=true;
+  checkReady();
+  if(campaignsReady&&expensesReady&&periodReady)renderAll();
+},(err)=>{setSyncing('error');console.error(err);});
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-loadPeriod();
+// loadPeriod primero — renderAll solo corre cuando el período ya está en memoria
+loadPeriod().then(()=>{
+  periodReady=true;
+  checkReady();
+  if(campaignsReady&&expensesReady&&periodReady)renderAll();
+});
+// Auto-refresh a medianoche
 const now=new Date();const tomorrow=new Date(now);tomorrow.setDate(tomorrow.getDate()+1);tomorrow.setHours(0,1,0,0);
 setTimeout(()=>{renderAll();setInterval(renderAll,1000*60*60*24);},tomorrow-now);
 </script>
