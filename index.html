@@ -941,9 +941,9 @@ document.getElementById('modal').addEventListener('click',function(e){
 // Keyboard ESC
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-// Seed data
-expenses.push({id:uid(),name:'Mailchimp Standard',type:'tool',amount:350,status:'pendiente'});
-expenses.push({id:uid(),name:'Deuda Meta Ads — mayo',type:'debt',amount:1200,status:'pendiente'});
+// Gastos iniciales
+expenses.push({id:uid(),name:'Deuda Meta Ads',type:'debt',amount:300,status:'pagado'});
+expenses.push({id:uid(),name:'Mailchimp',type:'tool',amount:630,status:'pendiente'});
 
 renderAll();
 </script>
