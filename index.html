@@ -131,7 +131,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:18p
 .btn-confirm:hover{background:var(--gold-l)}
 .btn-cancel{flex:1;padding:10px;border-radius:8px;background:transparent;color:var(--t2);font-family:'DM Sans',sans-serif;font-size:14px;border:1px solid var(--border);cursor:pointer;transition:all .15s}
 .btn-cancel:hover{border-color:var(--gold-d);color:var(--t1)}
-.toast{position:fixed;bottom:28px;right:28px;background:var(--ink3);border:1px solid var(--border-s);border-radius:var(--r);padding:12px 18px;font-size:13px;color:var(--t1);box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:9999;transform:translateY(80px);opacity:0;transition:all .25s ease;pointer-events:none;display:flex;align-items:center;gap:8px}
+.toast{position:fixed;bottom:90px;right:16px;background:var(--ink3);border:1px solid var(--border-s);border-radius:var(--r);padding:12px 18px;font-size:13px;color:var(--t1);box-shadow:0 8px 30px rgba(0,0,0,.4);z-index:9999;transform:translateY(80px);opacity:0;transition:all .25s ease;pointer-events:none;display:flex;align-items:center;gap:8px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast i{font-size:16px;color:var(--ok)}
 footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);background:var(--ink)}
@@ -141,7 +141,7 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
 .period-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end}
 .camp-spend-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--ink);border:1px solid var(--border);border-radius:var(--r);margin-bottom:6px}
 .progress-mini{height:4px;background:var(--ink3);border-radius:2px;overflow:hidden;margin-top:4px}
-.progress-mini-fill{height:100%;border-radius:2px;transition:width .4s}
+.progress-mini-fill{height:100%;border-radius:2px;transition:width .4px}
 /* LOGIN */
 #login-screen{position:fixed;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}
 .login-card{background:var(--ink2);border:1px solid var(--border-s);border-radius:var(--rl);padding:36px 32px;width:100%;max-width:360px;text-align:center}
@@ -187,25 +187,16 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
 </style>
 </head>
 <body>
-
-<!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">Dr. Mario Montoya</div>
     <div class="login-sub">Control de Presupuesto · Colombia</div>
-    <div class="login-field">
-      <label>Usuario</label>
-      <input type="text" id="login-user" placeholder="Usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
-    <div class="login-field">
-      <label>Contraseña</label>
-      <input type="password" id="login-pass" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    </div>
+    <div class="login-field"><label>Usuario</label><input type="text" id="login-user" placeholder="Usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="login-field"><label>Contraseña</label><input type="password" id="login-pass" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
     <button class="login-btn" onclick="doLogin()">Ingresar</button>
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
   </div>
 </div>
-
 <div id="loading-screen">
   <div class="brand">Dr. Mario Montoya</div>
   <div class="loader"></div>
@@ -239,42 +230,26 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
     </div>
   </nav>
   <main class="main">
-
-    <!-- OVERVIEW -->
     <div class="panel active" id="panel-overview">
       <div class="page-title">Resumen del período</div>
       <div class="page-desc">Seguimiento real de consumo desde la fecha de inicio de la pauta.</div>
-
-      <!-- PERÍODO CONFIG -->
       <div class="period-bar">
         <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);font-weight:500;margin-bottom:10px">Período de pauta</div>
         <div class="period-grid">
-          <div>
-            <label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Fecha inicio</label>
-            <input type="date" id="period-start" class="date-input" style="width:100%" onchange="savePeriod()">
-          </div>
-          <div>
-            <label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Fecha fin</label>
-            <input type="date" id="period-end" class="date-input" style="width:100%" onchange="savePeriod()">
-          </div>
-          <div>
-            <label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Presupuesto total</label>
-            <input type="number" id="period-budget" class="date-input" style="width:100%" value="18000" min="1" onchange="savePeriod()" placeholder="18000">
-          </div>
+          <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Fecha inicio</label><input type="date" id="period-start" class="date-input" style="width:100%" onchange="savePeriod()"></div>
+          <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Fecha fin</label><input type="date" id="period-end" class="date-input" style="width:100%" onchange="savePeriod()"></div>
+          <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:5px">Presupuesto total</label><input type="number" id="period-budget" class="date-input" style="width:100%" value="18000" min="1" onchange="savePeriod()" placeholder="18000"></div>
         </div>
         <div id="period-info" style="margin-top:10px;font-size:11px;color:var(--t3)"></div>
       </div>
-
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-card-lbl">Gastado real</div><div class="stat-card-val ok" id="s-spent-real">$0</div><div class="stat-card-note" id="s-spent-note">días transcurridos</div></div>
         <div class="stat-card"><div class="stat-card-lbl">Proyectado total</div><div class="stat-card-val" id="s-forecast">$0</div><div class="stat-card-note" id="s-forecast-note">al fin del período</div></div>
         <div class="stat-card"><div class="stat-card-lbl">Gastos adicionales</div><div class="stat-card-val warn" id="s-extras">$0</div><div class="stat-card-note" id="s-extras-note">herramientas + deudas</div></div>
         <div class="stat-card"><div class="stat-card-lbl">Presupuesto restante</div><div class="stat-card-val ok" id="s-remaining">$0</div><div class="stat-card-note" id="s-remaining-note">para los días que quedan</div></div>
       </div>
-
       <div class="alert-bar warn-alert" id="alert-85"><i class="ti ti-alert-triangle"></i><span id="alert-85-txt"></span></div>
       <div class="alert-bar danger-alert" id="alert-over"><i class="ti ti-alert-circle"></i><span id="alert-over-txt"></span></div>
-
       <div class="breakdown-wrap">
         <div class="breakdown-title">Distribución del presupuesto</div>
         <div class="breakdown-bar">
@@ -292,16 +267,12 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
           <div class="leg-item"><div class="leg-dot" style="background:#2A2820;border:1px solid rgba(201,168,76,.18)"></div><span id="leg-free">Disponible $0</span></div>
         </div>
       </div>
-
-      <!-- GASTO POR CAMPAÑA -->
       <div class="section-lbl" style="margin-bottom:10px">Gasto por campaña (acumulado real)</div>
       <div id="camp-spend-list"><div class="empty-state" style="border:1px dashed var(--border);border-radius:var(--r);padding:20px">Define el período y agrega campañas para ver el gasto acumulado.</div></div>
     </div>
-
-    <!-- CAMPAIGNS -->
     <div class="panel" id="panel-campaigns">
       <div class="page-title">Campañas</div>
-      <div class="page-desc">Gestiona el presupuesto diario. Las campañas activas acumulan gasto automáticamente cada día desde la fecha de inicio del período.</div>
+      <div class="page-desc">Las campañas activas acumulan gasto automáticamente cada día desde la fecha de inicio del período.</div>
       <div class="alert-bar warn-alert" id="alert-85b"><i class="ti ti-alert-triangle"></i><span id="alert-85b-txt"></span></div>
       <div class="alert-bar danger-alert" id="alert-overb"><i class="ti ti-alert-circle"></i><span id="alert-overb-txt"></span></div>
       <div class="section-hdr">
@@ -311,16 +282,14 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
       <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>Campaña</th><th>Fase</th><th style="text-align:center">Estado</th><th style="text-align:right">Diario (USD)</th><th style="text-align:right">Gastado real</th><th style="text-align:right">Proyec/período</th><th style="text-align:center">Escalar</th><th style="text-align:center">Acciones</th></tr></thead>
-          <tbody id="campaign-body"><tr><td colspan="8"><div class="empty-state">No hay campañas. Agrega tu primera campaña.</div></td></tr></tbody>
+          <tbody id="campaign-body"><tr><td colspan="8"><div class="empty-state">No hay campañas.</div></td></tr></tbody>
         </table>
       </div>
-      <div class="phase-note"><b>Ciclo de optimización:</b> Días 1–7 = aprendizaje (no escalar) · Días 8–10 = evaluación · Rendimiento positivo → +25% al diario · Repetir cada 7 días</div>
+      <div class="phase-note"><b>Ciclo:</b> Días 1–7 = aprendizaje · Días 8–10 = evaluación · Rendimiento positivo → +25% · Repetir cada 7 días</div>
     </div>
-
-    <!-- EXPENSES -->
     <div class="panel" id="panel-expenses">
       <div class="page-title">Gastos adicionales</div>
-      <div class="page-desc">Herramientas, deudas Meta y brechas. Todos descuentan del presupuesto disponible para pauta.</div>
+      <div class="page-desc">Herramientas, deudas Meta y brechas. Todos descuentan del presupuesto disponible.</div>
       <div class="section-hdr">
         <div class="section-lbl">Gastos registrados</div>
         <button class="btn-add" onclick="openModal('expense')"><i class="ti ti-plus"></i> Agregar gasto</button>
@@ -333,11 +302,9 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
       </div>
       <div class="phase-note"><b>Nota:</b> Todos los gastos aquí reducen el disponible real para pauta. <b>Brecha</b> = diferencia entre lo presupuestado y lo ejecutado en períodos anteriores.</div>
     </div>
-
-    <!-- FORECAST -->
     <div class="panel" id="panel-forecast">
       <div class="page-title">Forecast del período</div>
-      <div class="page-desc">Proyección real basada en las fechas del período y el gasto diario de campañas activas.</div>
+      <div class="page-desc">Proyección real basada en las fechas del período y campañas activas.</div>
       <div class="forecast-grid">
         <div class="f-card"><div class="f-lbl">Gasto diario activo</div><div class="f-val ok" id="fc-daily">$0/día</div><div class="f-note" id="fc-camps">0 campañas</div></div>
         <div class="f-card"><div class="f-lbl">Proyección total período</div><div class="f-val" id="fc-30">$0</div><div class="f-note" id="fc-30-note"></div></div>
@@ -345,8 +312,8 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
       </div>
       <div class="timeline-wrap">
         <div class="timeline-title">Línea de tiempo del período</div>
-        <div class="timeline-row" id="timeline-grid" style="grid-template-columns:repeat(30,1fr)"></div>
-        <div class="timeline-lbl"><span id="tl-start">Inicio</span><span id="tl-today" style="color:var(--gold)">▼ Hoy</span><span id="tl-end">Fin</span></div>
+        <div class="timeline-row" id="timeline-grid" style="grid-template-columns:repeat(35,1fr)"></div>
+        <div class="timeline-lbl"><span id="tl-start">27 Jul</span><span id="tl-today" style="color:var(--gold)">▼ Hoy</span><span id="tl-end">30 Ago</span></div>
         <div class="tl-legend">
           <div class="leg-item"><div class="leg-dot" style="background:var(--gold-d)"></div>Gastado</div>
           <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Hoy</div>
@@ -356,62 +323,38 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
         </div>
       </div>
     </div>
-
-    <!-- CALCULADORA -->
     <div class="panel" id="panel-calc">
       <div class="page-title">Calculadora de pauta diaria</div>
-      <div class="page-desc">¿Cuánto deberías gastar por día para alcanzar tu objetivo? Calcula sobre el período activo y distribuye entre campañas activas.</div>
+      <div class="page-desc">¿Cuánto deberías gastar por día para alcanzar tu objetivo? Usa los días restantes del período activo.</div>
       <div style="background:var(--ink3);border:1px solid var(--border);border-radius:var(--rl);padding:24px;margin-bottom:20px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-          <div>
-            <label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t2);margin-bottom:8px">Objetivo de gasto total (USD)</label>
-            <input type="number" id="calc-objetivo" min="0" step="100" placeholder="Ej. 15000" oninput="calcular()" style="width:100%;background:var(--ink);border:1px solid var(--border);border-radius:7px;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;padding:12px 14px;outline:none">
-          </div>
-          <div>
-            <label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t2);margin-bottom:8px">Días restantes del período</label>
-            <div id="calc-dias-display" style="background:var(--ink);border:1px solid var(--border);border-radius:7px;color:var(--gold-l);font-size:18px;font-weight:500;padding:12px 14px">— días</div>
-          </div>
+          <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t2);margin-bottom:8px">Objetivo de gasto total (USD)</label><input type="number" id="calc-objetivo" min="0" step="100" placeholder="Ej. 15000" oninput="calcular()" style="width:100%;background:var(--ink);border:1px solid var(--border);border-radius:7px;color:var(--t1);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;padding:12px 14px;outline:none"></div>
+          <div><label style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t2);margin-bottom:8px">Días restantes del período</label><div id="calc-dias-display" style="background:var(--ink);border:1px solid var(--border);border-radius:7px;color:var(--gold-l);font-size:18px;font-weight:500;padding:12px 14px">— días</div></div>
         </div>
         <div id="calc-resultado" style="display:none">
           <div style="background:var(--ink);border:1px solid var(--border-s);border-radius:var(--r);padding:20px;margin-bottom:20px;text-align:center">
-            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);margin-bottom:8px">Gasto diario necesario (días restantes)</div>
-            <div id="calc-diario" style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--gold);letter-spacing:.02em">$0</div>
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);margin-bottom:8px">Gasto diario necesario</div>
+            <div id="calc-diario" style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--gold)">$0</div>
             <div id="calc-diario-sub" style="font-size:12px;color:var(--t3);margin-top:4px"></div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
-            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">Gasto actual/día</div>
-              <div id="calc-actual" style="font-size:20px;font-weight:500;color:var(--t1)">$0</div>
-              <div id="calc-actual-camps" style="font-size:10px;color:var(--t3);margin-top:3px">0 campañas</div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">Diferencia diaria</div>
-              <div id="calc-diff" style="font-size:20px;font-weight:500">$0</div>
-              <div id="calc-diff-label" style="font-size:10px;color:var(--t3);margin-top:3px"></div>
-            </div>
-            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">% del presupuesto</div>
-              <div id="calc-pct-budget" style="font-size:20px;font-weight:500">0%</div>
-              <div id="calc-pct-note" style="font-size:10px;color:var(--t3);margin-top:3px"></div>
-            </div>
+            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">Gasto actual/día</div><div id="calc-actual" style="font-size:20px;font-weight:500;color:var(--t1)">$0</div><div id="calc-actual-camps" style="font-size:10px;color:var(--t3);margin-top:3px">0 campañas</div></div>
+            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">Diferencia diaria</div><div id="calc-diff" style="font-size:20px;font-weight:500">$0</div><div id="calc-diff-label" style="font-size:10px;color:var(--t3);margin-top:3px"></div></div>
+            <div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:6px">% del presupuesto</div><div id="calc-pct-budget" style="font-size:20px;font-weight:500">0%</div><div id="calc-pct-note" style="font-size:10px;color:var(--t3);margin-top:3px"></div></div>
           </div>
           <div>
             <div style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);font-weight:500;margin-bottom:12px">Distribución sugerida por campaña</div>
             <div id="calc-camps-tabla" style="display:flex;flex-direction:column;gap:8px"></div>
-            <div id="calc-no-camps" style="display:none;font-size:13px;color:var(--t3);font-style:italic;padding:16px;text-align:center;border:1px dashed var(--border);border-radius:var(--r)">Agrega campañas activas para ver la distribución sugerida.</div>
+            <div id="calc-no-camps" style="display:none;font-size:13px;color:var(--t3);font-style:italic;padding:16px;text-align:center;border:1px dashed var(--border);border-radius:var(--r)">Agrega campañas activas para ver la distribución.</div>
           </div>
-          <div id="calc-warning" style="display:none;margin-top:16px;padding:12px 16px;border-radius:var(--r);font-size:13px;border:1px solid;background:rgba(232,106,76,.07);border-color:rgba(232,106,76,.35);color:var(--danger)">
-            <i class="ti ti-alert-circle" style="font-size:16px;margin-right:8px;vertical-align:-2px"></i><span id="calc-warning-txt"></span>
-          </div>
+          <div id="calc-warning" style="display:none;margin-top:16px;padding:12px 16px;border-radius:var(--r);font-size:13px;border:1px solid;background:rgba(232,106,76,.07);border-color:rgba(232,106,76,.35);color:var(--danger)"><i class="ti ti-alert-circle" style="font-size:16px;margin-right:8px;vertical-align:-2px"></i><span id="calc-warning-txt"></span></div>
         </div>
         <div id="calc-empty" style="text-align:center;padding:32px;color:var(--t3);font-size:13px;font-style:italic">Ingresa tu objetivo de gasto total para ver el cálculo.</div>
       </div>
-      <div class="phase-note"><b>Cómo usar:</b> Ingresa el monto total que quieres gastar en pauta. El sistema usa los días restantes del período activo y distribuye proporcionalmente entre campañas activas.</div>
+      <div class="phase-note"><b>Cómo usar:</b> Ingresa el monto total que quieres gastar. El sistema usa los días restantes del período y distribuye entre campañas activas proporcionalmente.</div>
     </div>
-
   </main>
 </div>
-<!-- MOBILE BOTTOM NAV -->
 <nav class="mobile-nav">
   <div class="mobile-nav-inner">
     <button class="mob-nav-item active" onclick="switchPanel('overview')"><i class="ti ti-layout-dashboard"></i><span>Resumen</span></button>
@@ -422,7 +365,6 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
   </div>
 </nav>
 <footer><span style="font-size:11px;color:var(--t3);letter-spacing:.04em">creado por David Rodriguez</span></footer>
-
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-title" id="modal-title">Agregar</div>
@@ -434,197 +376,46 @@ footer{text-align:right;padding:14px 32px;border-top:1px solid var(--border);bac
   </div>
 </div>
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-text">Guardado</span></div>
-
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import { getFirestore, collection, doc, onSnapshot, addDoc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
 const firebaseConfig={apiKey:"AIzaSyBEEZIDOtugSZsHl49c0ZbQz3Dcc5Xjn5E",authDomain:"smiles-budget.firebaseapp.com",projectId:"smiles-budget",storageBucket:"smiles-budget.firebasestorage.app",messagingSenderId:"326725970561",appId:"1:326725970561:web:6085d0741561b915a17b80",measurementId:"G-TXVT8QEGBM"};
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
-
 const EMAILJS_SERVICE='service_rwxdl1e',EMAILJS_TEMPLATE='template_h0zkarz',EMAILJS_KEY='k6mvXrv4T4OSBrCsu';
 const ALERT_EMAILS=['david.rodriguez@smilesbymariomontoya.com','camilo.barco@smilesbymariomontoya.com','andres.avila@smilesbymariomontoya.com','diego.montoya@smilesbymariomontoya.com'];
 emailjs.init(EMAILJS_KEY);
-
-// ─── LOGIN ───────────────────────────────────────────────────────
-function doLogin(){
-  const user=document.getElementById('login-user').value.trim().toLowerCase();
-  const pass=document.getElementById('login-pass').value;
-  const err=document.getElementById('login-error');
-  if(user==='marketing'&&pass==='Smiles2026col'){
-    document.getElementById('login-screen').style.display='none';
-    sessionStorage.setItem('smm_auth','1');
-    err.style.display='none';
-  } else {
-    err.style.display='block';
-    document.getElementById('login-pass').value='';
-    document.getElementById('login-pass').focus();
-  }
-}
+function doLogin(){const user=document.getElementById('login-user').value.trim().toLowerCase();const pass=document.getElementById('login-pass').value;const err=document.getElementById('login-error');if(user==='marketing'&&pass==='Smiles2026col'){document.getElementById('login-screen').style.display='none';sessionStorage.setItem('smm_auth','1');err.style.display='none';}else{err.style.display='block';document.getElementById('login-pass').value='';document.getElementById('login-pass').focus();}}
 window.doLogin=doLogin;
-// Check session on load
-if(sessionStorage.getItem('smm_auth')==='1'){
-  document.getElementById('login-screen').style.display='none';
-}
-
+if(sessionStorage.getItem('smm_auth')==='1'){document.getElementById('login-screen').style.display='none';}
 let campaigns=[],expenses=[],modalType='',editId=null;
 let periodStart=null,periodEnd=null,TOTAL=18000;
-
-// ─── DATE HELPERS ───────────────────────────────────────────────
 function today(){const d=new Date();d.setHours(0,0,0,0);return d;}
 function parseDate(s){if(!s)return null;const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);dt.setHours(0,0,0,0);return dt;}
 function daysBetween(a,b){if(!a||!b)return 0;return Math.round((b-a)/(1000*60*60*24));}
 function fmt(n){return'$'+Math.round(n).toLocaleString('en-US')}
 function fmtD(n){return fmt(n)+'/día'}
 function activeCamps(){return campaigns.filter(c=>c.status!=='paused');}
-
-// Days elapsed from start to today (inclusive), capped to period length
-function daysElapsed(){
-  if(!periodStart)return 0;
-  const t=today();
-  if(t<periodStart)return 0;
-  const end=periodEnd||t;
-  const cap=t>end?end:t;
-  return daysBetween(periodStart,cap)+1;
-}
-function daysTotal(){
-  if(!periodStart||!periodEnd)return 0;
-  return daysBetween(periodStart,periodEnd)+1;
-}
-function daysLeft(){
-  if(!periodEnd)return 0;
-  const t=today();
-  if(t>periodEnd)return 0;
-  if(t<periodStart)return daysTotal();
-  return daysBetween(t,periodEnd);
-}
-
-// Real spent = active campaigns daily × days elapsed
-function realSpent(){
-  const elapsed=daysElapsed();
-  return activeCamps().reduce((s,c)=>s+(c.daily*elapsed),0);
-}
-
-// ─── PERIOD SAVE/LOAD ────────────────────────────────────────────
-async function savePeriod(){
-  const startVal=document.getElementById('period-start').value;
-  const endVal=document.getElementById('period-end').value;
-  const budgetVal=parseFloat(document.getElementById('period-budget').value)||18000;
-  periodStart=parseDate(startVal);
-  periodEnd=parseDate(endVal);
-  TOTAL=budgetVal;
-  document.getElementById('header-budget').textContent=fmt(TOTAL)+' USD';
-  try{
-    await setDoc(doc(db,'config','period'),{start:startVal,end:endVal,budget:budgetVal});
-  }catch(e){console.error(e);}
-  renderAll();
-}
+function daysElapsed(){if(!periodStart)return 0;const t=today();if(t<periodStart)return 0;const end=periodEnd||t;const cap=t>end?end:t;return daysBetween(periodStart,cap)+1;}
+function daysTotal(){if(!periodStart||!periodEnd)return 0;return daysBetween(periodStart,periodEnd)+1;}
+function daysLeft(){if(!periodEnd)return 0;const t=today();if(t>periodEnd)return 0;if(periodStart&&t<periodStart)return daysTotal();return daysBetween(t,periodEnd);}
+function realSpent(){return activeCamps().reduce((s,c)=>s+(c.daily*daysElapsed()),0);}
+async function savePeriod(){const sv=document.getElementById('period-start').value;const ev=document.getElementById('period-end').value;const bv=parseFloat(document.getElementById('period-budget').value)||18000;periodStart=parseDate(sv);periodEnd=parseDate(ev);TOTAL=bv;document.getElementById('header-budget').textContent=fmt(TOTAL)+' USD';try{await setDoc(doc(db,'config','period'),{start:sv,end:ev,budget:bv});}catch(e){console.error(e);}renderAll();}
 window.savePeriod=savePeriod;
-
-async function loadPeriod(){
-  try{
-    const snap=await getDoc(doc(db,'config','period'));
-    if(snap.exists()){
-      const d=snap.data();
-      if(d.start)document.getElementById('period-start').value=d.start;
-      if(d.end)document.getElementById('period-end').value=d.end;
-      if(d.budget){document.getElementById('period-budget').value=d.budget;TOTAL=d.budget;}
-      periodStart=parseDate(d.start);
-      periodEnd=parseDate(d.end);
-      document.getElementById('header-budget').textContent=fmt(TOTAL)+' USD';
-    }
-  }catch(e){console.error(e);}
-}
-
-// ─── ALERT ──────────────────────────────────────────────────────
+async function loadPeriod(){try{const snap=await getDoc(doc(db,'config','period'));if(snap.exists()&&snap.data().start){const d=snap.data();document.getElementById('period-start').value=d.start;document.getElementById('period-end').value=d.end||'';if(d.budget){document.getElementById('period-budget').value=d.budget;TOTAL=d.budget;}periodStart=parseDate(d.start);periodEnd=parseDate(d.end);}else{const defStart='2026-07-27',defEnd='2026-08-30';document.getElementById('period-start').value=defStart;document.getElementById('period-end').value=defEnd;document.getElementById('period-budget').value='18000';periodStart=parseDate(defStart);periodEnd=parseDate(defEnd);TOTAL=18000;try{await setDoc(doc(db,'config','period'),{start:defStart,end:defEnd,budget:18000});}catch(e2){}}document.getElementById('header-budget').textContent=fmt(TOTAL)+' USD';}catch(e){console.error(e);}}
 function getMonthKey(){const d=new Date();return'alert85_'+d.getFullYear()+'_'+(d.getMonth()+1);}
-async function checkAndSendAlert(pctUsed,totalUsed){
-  if(pctUsed<0.85)return;
-  const key=getMonthKey();
-  try{
-    const ref=doc(db,'alerts',key);
-    const snap=await getDoc(ref);
-    if(snap.exists())return;
-    await setDoc(ref,{sent:true,sentAt:new Date().toISOString(),pct:Math.round(pctUsed*100)});
-    await Promise.all(ALERT_EMAILS.map(email=>emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{to_email:email,total_usado:fmt(totalUsed),margen_libre:fmt(Math.max(TOTAL-totalUsed,0)),porcentaje:Math.round(pctUsed*100),dashboard_url:'https://smmcolbudget.netlify.app'})));
-    showToast('⚠️ Alerta 85% enviada a 4 correos');
-  }catch(e){console.error('Error alerta:',e);}
-}
-
+async function checkAndSendAlert(pctUsed,totalUsed){if(pctUsed<0.85)return;const key=getMonthKey();try{const ref=doc(db,'alerts',key);const snap=await getDoc(ref);if(snap.exists())return;await setDoc(ref,{sent:true,sentAt:new Date().toISOString(),pct:Math.round(pctUsed*100)});await Promise.all(ALERT_EMAILS.map(email=>emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{to_email:email,total_usado:fmt(totalUsed),margen_libre:fmt(Math.max(TOTAL-totalUsed,0)),porcentaje:Math.round(pctUsed*100),dashboard_url:'https://smmcolbudget.netlify.app'})));showToast('⚠️ Alerta 85% enviada a 4 correos');}catch(e){console.error('Error alerta:',e);}}
 function setSyncing(state){const dot=document.getElementById('sync-dot');const lbl=document.getElementById('sync-label');if(state==='syncing'){dot.className='sync-dot syncing';lbl.textContent='Guardando...';}else if(state==='ok'){dot.className='sync-dot';lbl.textContent='Sincronizado';}else{dot.className='sync-dot error';lbl.textContent='Error de conexión';}}
 function showToast(msg,isError){const t=document.getElementById('toast');const ic=t.querySelector('i');ic.className=isError?'ti ti-alert-circle':'ti ti-check';ic.style.color=isError?'var(--danger)':'var(--ok)';document.getElementById('toast-text').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
-function switchPanel(p){
-  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.mob-nav-item').forEach(el=>el.classList.remove('active'));
-  document.getElementById('panel-'+p).classList.add('active');
-  const map={'overview':0,'campaigns':1,'expenses':2,'forecast':3,'calc':4};
-  const idx=map[p];
-  const navItems=document.querySelectorAll('.nav-item');
-  const mobItems=document.querySelectorAll('.mob-nav-item');
-  if(navItems[idx])navItems[idx].classList.add('active');
-  if(mobItems[idx])mobItems[idx].classList.add('active');
-  if(p==='forecast')renderTimeline();
-  if(p==='calc')calcular();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+function switchPanel(p){document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.mob-nav-item').forEach(el=>el.classList.remove('active'));document.getElementById('panel-'+p).classList.add('active');const map={'overview':0,'campaigns':1,'expenses':2,'forecast':3,'calc':4};const idx=map[p];const navItems=document.querySelectorAll('.nav-item');const mobItems=document.querySelectorAll('.mob-nav-item');if(navItems[idx])navItems[idx].classList.add('active');if(mobItems[idx])mobItems[idx].classList.add('active');if(p==='forecast')renderTimeline();if(p==='calc')calcular();window.scrollTo({top:0,behavior:'smooth'});}
 window.switchPanel=switchPanel;
-
-// ─── MODAL ──────────────────────────────────────────────────────
-function openModal(type,id){
-  modalType=type;editId=id||null;const isEdit=!!id;
-  document.getElementById('modal-title').textContent=isEdit?(type==='campaign'?'Editar campaña':'Editar gasto'):(type==='campaign'?'Nueva campaña':'Nuevo gasto');
-  let html='';
-  if(type==='campaign'){
-    const c=isEdit?campaigns.find(x=>x.id===id):{};
-    html='<div class="m-field"><label>Nombre de la campaña</label><input id="m-name" value="'+(c.name||'')+'" placeholder="Ej. Veneers Colombia"></div>'
-      +'<div class="m-field"><label>Presupuesto diario (USD)</label><input id="m-daily" type="number" min="1" step="1" value="'+(c.daily||'')+'" placeholder="Ej. 50"></div>'
-      +'<div class="m-field"><label>Fase actual</label><select id="m-phase"><option value="learn" '+((!c.phase||c.phase==='learn')?'selected':'')+'>Aprendizaje (días 1–7)</option><option value="eval" '+(c.phase==='eval'?'selected':'')+'>Evaluación (días 8–10)</option><option value="scale" '+(c.phase==='scale'?'selected':'')+'>Escalado activo</option></select></div>'
-      +'<div class="m-field"><label>Días en fase actual</label><input id="m-days" type="number" min="0" step="1" value="'+(c.daysInPhase||0)+'"></div>';
-  }else{
-    const e=isEdit?expenses.find(x=>x.id===id):{};
-    html='<div class="m-field"><label>Descripción</label><input id="e-name" value="'+(e.name||'')+'" placeholder="Ej. Mailchimp, Brecha julio"></div>'
-      +'<div class="m-field"><label>Tipo</label><select id="e-type"><option value="tool" '+((!e.type||e.type==='tool')?'selected':'')+'>Herramienta / suscripción</option><option value="debt" '+(e.type==='debt'?'selected':'')+'>Deuda pasada Meta Ads</option><option value="brecha" '+(e.type==='brecha'?'selected':'')+'>Brecha</option></select></div>'
-      +'<div class="m-field"><label>Monto (USD)</label><input id="e-amount" type="number" min="1" step="1" value="'+(e.amount||'')+'" placeholder="Ej. 350"></div>'
-      +'<div class="m-field"><label>Estado</label><select id="e-status"><option value="pendiente" '+((!e.status||e.status==='pendiente')?'selected':'')+'>Pendiente</option><option value="pagado" '+(e.status==='pagado'?'selected':'')+'>Pagado</option></select></div>';
-  }
-  document.getElementById('modal-body').innerHTML=html;
-  document.getElementById('modal').classList.add('open');
-  setTimeout(()=>{const f=document.getElementById(type==='campaign'?'m-name':'e-name');if(f)f.focus();},80);
-}
+function openModal(type,id){modalType=type;editId=id||null;const isEdit=!!id;document.getElementById('modal-title').textContent=isEdit?(type==='campaign'?'Editar campaña':'Editar gasto'):(type==='campaign'?'Nueva campaña':'Nuevo gasto');let html='';if(type==='campaign'){const c=isEdit?campaigns.find(x=>x.id===id):{};html='<div class="m-field"><label>Nombre de la campaña</label><input id="m-name" value="'+(c.name||'')+'" placeholder="Ej. Veneers Colombia"></div><div class="m-field"><label>Presupuesto diario (USD)</label><input id="m-daily" type="number" min="1" step="1" value="'+(c.daily||'')+'" placeholder="Ej. 50"></div><div class="m-field"><label>Fase actual</label><select id="m-phase"><option value="learn" '+((!c.phase||c.phase==='learn')?'selected':'')+'>Aprendizaje (días 1–7)</option><option value="eval" '+(c.phase==='eval'?'selected':'')+'>Evaluación (días 8–10)</option><option value="scale" '+(c.phase==='scale'?'selected':'')+'>Escalado activo</option></select></div><div class="m-field"><label>Días en fase actual</label><input id="m-days" type="number" min="0" step="1" value="'+(c.daysInPhase||0)+'"></div>';}else{const e=isEdit?expenses.find(x=>x.id===id):{};html='<div class="m-field"><label>Descripción</label><input id="e-name" value="'+(e.name||'')+'" placeholder="Ej. Mailchimp, Brecha julio"></div><div class="m-field"><label>Tipo</label><select id="e-type"><option value="tool" '+((!e.type||e.type==='tool')?'selected':'')+'>Herramienta / suscripción</option><option value="debt" '+(e.type==='debt'?'selected':'')+'>Deuda pasada Meta Ads</option><option value="brecha" '+(e.type==='brecha'?'selected':'')+'>Brecha</option></select></div><div class="m-field"><label>Monto (USD)</label><input id="e-amount" type="number" min="1" step="1" value="'+(e.amount||'')+'" placeholder="Ej. 350"></div><div class="m-field"><label>Estado</label><select id="e-status"><option value="pendiente" '+((!e.status||e.status==='pendiente')?'selected':'')+'>Pendiente</option><option value="pagado" '+(e.status==='pagado'?'selected':'')+'>Pagado</option></select></div>';}document.getElementById('modal-body').innerHTML=html;document.getElementById('modal').classList.add('open');setTimeout(()=>{const f=document.getElementById(type==='campaign'?'m-name':'e-name');if(f)f.focus();},80);}
 window.openModal=openModal;
-
 function closeModal(){document.getElementById('modal').classList.remove('open')}
 window.closeModal=closeModal;
-
-async function saveModal(){
-  setSyncing('syncing');
-  try{
-    if(modalType==='campaign'){
-      const name=document.getElementById('m-name').value.trim();
-      const daily=parseFloat(document.getElementById('m-daily').value)||0;
-      const phase=document.getElementById('m-phase').value;
-      const daysInPhase=parseInt(document.getElementById('m-days').value)||0;
-      if(!name||daily<=0){alert('Completa el nombre y presupuesto diario.');setSyncing('ok');return;}
-      if(editId){await updateDoc(doc(db,'campaigns',editId),{name,daily,phase,daysInPhase});showToast('Campaña actualizada');}
-      else{await addDoc(collection(db,'campaigns'),{name,daily,phase,daysInPhase,status:'active'});showToast('Campaña agregada');}
-    }else{
-      const name=document.getElementById('e-name').value.trim();
-      const type=document.getElementById('e-type').value;
-      const amount=parseFloat(document.getElementById('e-amount').value)||0;
-      const status=document.getElementById('e-status').value;
-      if(!name||amount<=0){alert('Completa descripción y monto.');setSyncing('ok');return;}
-      if(editId){await updateDoc(doc(db,'expenses',editId),{name,type,amount,status});showToast('Gasto actualizado');}
-      else{await addDoc(collection(db,'expenses'),{name,type,amount,status});showToast('Gasto agregado');}
-    }
-    setSyncing('ok');closeModal();
-  }catch(e){setSyncing('error');showToast('Error al guardar',true);console.error(e);}
-}
+async function saveModal(){setSyncing('syncing');try{if(modalType==='campaign'){const name=document.getElementById('m-name').value.trim();const daily=parseFloat(document.getElementById('m-daily').value)||0;const phase=document.getElementById('m-phase').value;const daysInPhase=parseInt(document.getElementById('m-days').value)||0;if(!name||daily<=0){alert('Completa el nombre y presupuesto diario.');setSyncing('ok');return;}if(editId){await updateDoc(doc(db,'campaigns',editId),{name,daily,phase,daysInPhase});showToast('Campaña actualizada');}else{await addDoc(collection(db,'campaigns'),{name,daily,phase,daysInPhase,status:'active'});showToast('Campaña agregada');}}else{const name=document.getElementById('e-name').value.trim();const type=document.getElementById('e-type').value;const amount=parseFloat(document.getElementById('e-amount').value)||0;const status=document.getElementById('e-status').value;if(!name||amount<=0){alert('Completa descripción y monto.');setSyncing('ok');return;}if(editId){await updateDoc(doc(db,'expenses',editId),{name,type,amount,status});showToast('Gasto actualizado');}else{await addDoc(collection(db,'expenses'),{name,type,amount,status});showToast('Gasto agregado');}}setSyncing('ok');closeModal();}catch(e){setSyncing('error');showToast('Error al guardar',true);console.error(e);}}
 window.saveModal=saveModal;
-
 async function deleteCampaign(id){if(!confirm('¿Eliminar esta campaña?'))return;setSyncing('syncing');try{await deleteDoc(doc(db,'campaigns',id));showToast('Campaña eliminada');setSyncing('ok');}catch(e){setSyncing('error');}}
 window.deleteCampaign=deleteCampaign;
 async function deleteExpense(id){if(!confirm('¿Eliminar este gasto?'))return;setSyncing('syncing');try{await deleteDoc(doc(db,'expenses',id));showToast('Gasto eliminado');setSyncing('ok');}catch(e){setSyncing('error');}}
@@ -637,258 +428,32 @@ async function updateStatus(id,v){setSyncing('syncing');try{await updateDoc(doc(
 window.updateStatus=updateStatus;
 async function updateCampStatus(id,v){setSyncing('syncing');try{await updateDoc(doc(db,'campaigns',id),{status:v});showToast(v==='paused'?'Campaña pausada':'Campaña activada');setSyncing('ok');}catch(e){setSyncing('error');}}
 window.updateCampStatus=updateCampStatus;
-
-// ─── LABEL HELPERS ───────────────────────────────────────────────
 function phaseLabel(p){const map={learn:['phase-learn','Aprendizaje'],eval:['phase-eval','Evaluación'],scale:['phase-scale','Escalando']};const[cls,txt]=map[p]||map.learn;return'<span class="phase-badge '+cls+'">'+txt+'</span>';}
 function phaseDaysNote(p,d){if(p==='learn'){const l=Math.max(0,7-d);return l>0?'<div style="font-size:10px;color:var(--t3);margin-top:3px">'+l+' días restantes</div>':''}if(p==='eval'){const l=Math.max(0,10-d);return l>0?'<div style="font-size:10px;color:var(--t3);margin-top:3px">'+l+' días para decidir</div>':''}return'';}
 function expTypeLabel(t){if(t==='debt')return'<span class="phase-badge badge-debt">Deuda Meta</span>';if(t==='brecha')return'<span class="phase-badge badge-brecha">Brecha</span>';return'<span class="phase-badge badge-tool">Herramienta</span>';}
 function expColor(t){if(t==='debt')return'var(--danger)';if(t==='brecha')return'var(--brecha)';return'var(--info)';}
-
-// ─── RENDER CAMPAIGNS ────────────────────────────────────────────
-function renderCampaigns(){
-  const tbody=document.getElementById('campaign-body');
-  const elapsed=daysElapsed();
-  const totalDays=daysTotal();
-  if(!campaigns.length){tbody.innerHTML='<tr><td colspan="8"><div class="empty-state">No hay campañas. Agrega tu primera campaña.</div></td></tr>';return;}
-  tbody.innerHTML=campaigns.map(c=>{
-    const isPaused=c.status==='paused';
-    const spent=isPaused?0:c.daily*elapsed;
-    const projected=c.daily*totalDays;
-    return'<tr style="'+(isPaused?'opacity:.5;':'')+'">'+
-      +'<td><div style="font-size:13px;font-weight:500">'+c.name+'</div></td>'
-      +'<td>'+phaseLabel(c.phase)+phaseDaysNote(c.phase,c.daysInPhase)+'</td>'
-      +'<td style="text-align:center"><select class="status-select" onchange="updateCampStatus(\''+c.id+'\',this.value)" style="font-size:11px;padding:4px 8px"><option value="active" '+(isPaused?'':'selected')+'>Activa</option><option value="paused" '+(isPaused?'selected':'')+'>Pausada</option></select></td>'
-      +'<td style="text-align:right"><input class="inline-input" type="number" value="'+c.daily+'" min="1" step="1" onchange="updateDaily(\''+c.id+'\',this.value)" '+(isPaused?'disabled':'')+'></td>'
-      +'<td style="text-align:right;font-weight:500;color:'+(isPaused?'var(--t3)':'var(--gold)')+'">'+fmt(spent)+'</td>'
-      +'<td style="text-align:right;color:'+(isPaused?'var(--t3)':'var(--gold-l)')+'">'+fmt(projected)+'</td>'
-      +'<td style="text-align:center"><button class="scale-btn" onclick="scaleDaily(\''+c.id+'\')" '+(c.phase==='learn'||isPaused?'disabled':'')+'>+25%</button></td>'
-      +'<td><div class="action-btns" style="justify-content:center"><button class="icon-btn edit-btn" onclick="openModal(\'campaign\',\''+c.id+'\')"><i class="ti ti-edit" style="font-size:14px"></i></button><button class="icon-btn del-btn" onclick="deleteCampaign(\''+c.id+'\')"><i class="ti ti-trash" style="font-size:14px"></i></button></div></td>'
-      +'</tr>';
-  }).join('');
-}
-
-// ─── RENDER EXPENSES ─────────────────────────────────────────────
-function renderExpenses(){
-  const tbody=document.getElementById('expense-body');
-  if(!expenses.length){tbody.innerHTML='<tr><td colspan="6"><div class="empty-state">No hay gastos adicionales.</div></td></tr>';return;}
-  tbody.innerHTML=expenses.map(e=>'<tr><td style="font-size:13px;font-weight:500">'+e.name+'</td><td>'+expTypeLabel(e.type)+'</td><td style="text-align:right;font-weight:500;color:'+expColor(e.type)+'">'+fmt(e.amount)+'</td><td style="text-align:right">'+Math.round(e.amount/TOTAL*100)+'%</td><td style="text-align:center"><select class="status-select" onchange="updateStatus(\''+e.id+'\',this.value)"><option value="pendiente" '+(e.status==='pendiente'?'selected':'')+'>Pendiente</option><option value="pagado" '+(e.status==='pagado'?'selected':'')+'>Pagado</option></select></td><td><div class="action-btns" style="justify-content:center"><button class="icon-btn edit-btn" onclick="openModal(\'expense\',\''+e.id+'\')"><i class="ti ti-edit" style="font-size:14px"></i></button><button class="icon-btn del-btn" onclick="deleteExpense(\''+e.id+'\')"><i class="ti ti-trash" style="font-size:14px"></i></button></div></td></tr>').join('');
-}
-
-// ─── RENDER CAMP SPEND LIST ──────────────────────────────────────
-function renderCampSpendList(){
-  const el=document.getElementById('camp-spend-list');
-  const elapsed=daysElapsed();
-  const active=activeCamps();
-  if(!active.length){el.innerHTML='<div class="empty-state" style="border:1px dashed var(--border);border-radius:var(--r);padding:20px">Agrega campañas activas para ver el gasto acumulado por día.</div>';return;}
-  const totalSpent=active.reduce((s,c)=>s+(c.daily*elapsed),0);
-  el.innerHTML=active.map(c=>{
-    const spent=c.daily*elapsed;
-    const pct=totalSpent>0?Math.round(spent/totalSpent*100):0;
-    const pctOfBudget=Math.round(spent/TOTAL*100);
-    return'<div class="camp-spend-row">'
-      +'<div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--t1)">'+c.name+'</div>'
-      +'<div style="font-size:10px;color:var(--t3);margin-top:2px">'+fmt(c.daily)+'/día × '+elapsed+' días transcurridos · '+pctOfBudget+'% del presupuesto</div>'
-      +'<div class="progress-mini"><div class="progress-mini-fill" style="width:'+pct+'%;background:var(--gold-d)"></div></div></div>'
-      +'<div style="text-align:right;margin-left:16px"><div style="font-size:18px;font-weight:500;color:var(--gold-l)">'+fmt(spent)+'</div>'
-      +'<div style="font-size:10px;color:var(--t3);margin-top:2px">'+pct+'% del total pauta</div></div>'
-      +'</div>';
-  }).join('');
-}
-
-// ─── RENDER TIMELINE ─────────────────────────────────────────────
-function renderTimeline(){
-  const totalDays=daysTotal();
-  const elapsed=daysElapsed();
-  const totalExp=expenses.reduce((s,e)=>s+e.amount,0);
-  const totalDaily=activeCamps().reduce((s,c)=>s+c.daily,0);
-  const available=TOTAL-totalExp;
-  const alertAmt=TOTAL*0.85;
-  const spentSoFar=realSpent()+totalExp;
-
-  if(!totalDays){
-    document.getElementById('timeline-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--t3);font-size:12px;font-style:italic">Define las fechas del período para ver la línea de tiempo.</div>';
-    return;
-  }
-
-  const cols=Math.min(totalDays,60);
-  document.getElementById('timeline-grid').style.gridTemplateColumns='repeat('+cols+',1fr)';
-
-  const daysToAlert=totalDaily>0?Math.ceil((alertAmt-totalExp-realSpent())/totalDaily):null;
-  document.getElementById('tl-today').textContent=elapsed>0&&elapsed<=totalDays?'▼ Día '+elapsed:'';
-  document.getElementById('tl-start').textContent=document.getElementById('period-start').value||'Inicio';
-  document.getElementById('tl-end').textContent=document.getElementById('period-end').value||'Fin';
-
-  document.getElementById('fc-daily').textContent=fmtD(totalDaily);
-  document.getElementById('fc-camps').textContent=activeCamps().length+' campaña'+(activeCamps().length!==1?'s activas':' activa');
-  const projTotal=realSpent()+totalDaily*daysLeft()+totalExp;
-  document.getElementById('fc-30').textContent=fmt(projTotal);
-  document.getElementById('fc-30').className='f-val '+(projTotal>TOTAL?'danger':projTotal/TOTAL>=0.85?'warn':'ok');
-  document.getElementById('fc-30-note').textContent=projTotal>TOTAL?'⚠ supera el presupuesto en '+fmt(projTotal-TOTAL):'proyección al fin del período';
-  document.getElementById('fc-days').textContent=daysToAlert&&daysToAlert>0?'Día '+Math.min(elapsed+daysToAlert,totalDays):'Sin alerta';
-  document.getElementById('fc-days').className='f-val '+(daysToAlert&&daysToAlert>0?'warn':'ok');
-
-  let cells='';
-  for(let d=1;d<=cols;d++){
-    const cumSpent=totalExp+(totalDaily*Math.min(d,elapsed>0?elapsed:0))+(totalDaily*Math.max(d-elapsed,0));
-    const pctCum=(totalExp+totalDaily*d)/TOTAL;
-    let cls='day-cell';
-    if(d<elapsed)cls+=' spent';
-    else if(d===elapsed)cls+=' today';
-    else if(pctCum>=1)cls+=' over';
-    else if(daysToAlert&&d===elapsed+daysToAlert)cls+=' alert85';
-    else if(totalDaily>0)cls+=' projected';
-    else cls+=' future';
-    cells+='<div class="'+cls+'" title="Día '+d+': '+fmt(totalExp+totalDaily*d)+'"></div>';
-  }
-  document.getElementById('timeline-grid').innerHTML=cells;
-}
-
-// ─── RENDER STATS ────────────────────────────────────────────────
-function renderStats(){
-  const totalExp=expenses.reduce((s,e)=>s+e.amount,0);
-  const toolsTotal=expenses.filter(e=>e.type==='tool').reduce((s,e)=>s+e.amount,0);
-  const debtTotal=expenses.filter(e=>e.type==='debt').reduce((s,e)=>s+e.amount,0);
-  const brechaTotal=expenses.filter(e=>e.type==='brecha').reduce((s,e)=>s+e.amount,0);
-  const active=activeCamps();
-  const paused=campaigns.filter(c=>c.status==='paused');
-  const totalDaily=active.reduce((s,c)=>s+c.daily,0);
-  const elapsed=daysElapsed();
-  const left=daysLeft();
-  const total=daysTotal();
-  const spent=realSpent();
-  const totalUsed=spent+totalExp;
-  const projected=spent+totalDaily*left+totalExp;
-  const pctUsed=totalUsed/TOTAL;
-  const remaining=TOTAL-totalUsed;
-
-  checkAndSendAlert(pctUsed,totalUsed);
-
-  // Sidebar
-  document.getElementById('sb-days-elapsed').textContent=elapsed||'—';
-  document.getElementById('sb-days-elapsed').className='sidebar-stat-val ok';
-  document.getElementById('sb-days-left').textContent=left||'—';
-  document.getElementById('sb-days-left').className='sidebar-stat-val '+(left<=3&&left>0?'warn':'ok');
-  document.getElementById('sb-spent-real').textContent=fmt(spent);
-  document.getElementById('sb-spent-real').className='sidebar-stat-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');
-  document.getElementById('sb-pct').textContent=Math.round(pctUsed*100)+'%';
-  document.getElementById('sb-pct').className='sidebar-stat-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');
-
-  // Period info
-  if(total>0){
-    document.getElementById('period-info').textContent='Período: '+total+' días · Día '+elapsed+' de '+total+' · '+left+' días restantes';
-  }
-
-  // Stats cards
-  document.getElementById('s-spent-real').textContent=fmt(spent);
-  document.getElementById('s-spent-real').className='stat-card-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');
-  document.getElementById('s-spent-note').textContent=elapsed+' día'+(elapsed!==1?'s':'')+' transcurrido'+(elapsed!==1?'s':'');
-  document.getElementById('s-forecast').textContent=fmt(projected);
-  document.getElementById('s-forecast').className='stat-card-val '+(projected>TOTAL?'danger':projected/TOTAL>=0.85?'warn':'ok');
-  document.getElementById('s-forecast-note').textContent=active.length+' activa'+(active.length!==1?'s':'')+(paused.length>0?' · '+paused.length+' pausada'+(paused.length!==1?'s':''):'');
-  document.getElementById('s-extras').textContent=fmt(totalExp);
-  document.getElementById('s-extras-note').textContent='herramientas '+fmt(toolsTotal)+' · deudas '+fmt(debtTotal)+(brechaTotal>0?' · brecha '+fmt(brechaTotal):'');
-  document.getElementById('s-remaining').textContent=fmt(Math.max(remaining,0));
-  document.getElementById('s-remaining').className='stat-card-val '+(remaining<0?'danger':remaining<TOTAL*0.15?'warn':'ok');
-  document.getElementById('s-remaining-note').textContent='para '+left+' día'+(left!==1?'s':'')+' restante'+(left!==1?'s':'');
-
-  // Breakdown
-  const spentPct=Math.min(spent/TOTAL*100,100);
-  const toolsPct=Math.min(toolsTotal/TOTAL*100,100);
-  const debtPct=Math.min(debtTotal/TOTAL*100,100);
-  const brechaPct=Math.min(brechaTotal/TOTAL*100,100);
-  const freePct=Math.max(100-spentPct-toolsPct-debtPct-brechaPct,0);
-  document.getElementById('bb-spent').style.width=spentPct+'%';
-  document.getElementById('bb-tools').style.width=toolsPct+'%';
-  document.getElementById('bb-debt').style.width=debtPct+'%';
-  document.getElementById('bb-brecha').style.width=brechaPct+'%';
-  document.getElementById('bb-free').style.width=freePct+'%';
-  document.getElementById('leg-spent').textContent='Gastado '+fmt(spent);
-  document.getElementById('leg-tools').textContent='Herramientas '+fmt(toolsTotal);
-  document.getElementById('leg-debt').textContent='Deudas Meta '+fmt(debtTotal);
-  document.getElementById('leg-brecha').textContent='Brecha '+fmt(brechaTotal);
-  document.getElementById('leg-free').textContent='Disponible '+fmt(Math.max(TOTAL-totalUsed,0));
-
-  // Alerts
-  ['alert-85','alert-85b'].forEach(id=>{const el=document.getElementById(id);if(pctUsed>=1){el.classList.remove('visible');}else if(pctUsed>=0.85){el.classList.add('visible');document.getElementById(id+'-txt').textContent='Consumiste el '+Math.round(pctUsed*100)+'% del presupuesto. Quedan '+fmt(TOTAL-totalUsed)+'. Alerta enviada por correo.';}else{el.classList.remove('visible');}});
-  ['alert-over','alert-overb'].forEach(id=>{const el=document.getElementById(id);if(projected>TOTAL){el.classList.add('visible');document.getElementById(id+'-txt').textContent='La proyección supera el presupuesto en '+fmt(projected-TOTAL)+'. Ajusta campañas o presupuesto.';}else{el.classList.remove('visible');}});
-}
-
-// ─── CALCULADORA ─────────────────────────────────────────────────
-function calcular(){
-  const objetivo=parseFloat(document.getElementById('calc-objetivo').value)||0;
-  const left=daysLeft();
-  const active=activeCamps();
-  const paused=campaigns.filter(c=>c.status==='paused');
-  const totalDaily=active.reduce((s,c)=>s+c.daily,0);
-  const totalExp=expenses.reduce((s,e)=>s+e.amount,0);
-  const available=TOTAL-totalExp-realSpent();
-
-  document.getElementById('calc-dias-display').textContent=left?left+' días':'— días';
-
-  if(!objetivo){document.getElementById('calc-resultado').style.display='none';document.getElementById('calc-empty').style.display='block';return;}
-  document.getElementById('calc-resultado').style.display='block';document.getElementById('calc-empty').style.display='none';
-
-  const dias=left||1;
-  const diarioNecesario=objetivo/dias;
-  const diff=diarioNecesario-totalDaily;
-  const pctBudget=Math.round(objetivo/TOTAL*100);
-
-  document.getElementById('calc-diario').textContent=fmt(diarioNecesario);
-  document.getElementById('calc-diario-sub').textContent=fmt(objetivo)+' ÷ '+dias+' días restantes';
-  document.getElementById('calc-diario').style.color=objetivo>available?'var(--danger)':objetivo>TOTAL*0.85?'var(--warn)':'var(--gold)';
-  document.getElementById('calc-actual').textContent=fmt(totalDaily)+'/día';
-  document.getElementById('calc-actual-camps').textContent=active.length+' activa'+(active.length!==1?'s':'')+(paused.length>0?' · '+paused.length+' pausada'+(paused.length!==1?'s':''):'');
-  const diffEl=document.getElementById('calc-diff');const diffLbl=document.getElementById('calc-diff-label');
-  diffEl.textContent=(diff>=0?'+':'')+fmt(diff)+'/día';diffEl.style.color=diff>0?'var(--warn)':diff<0?'var(--ok)':'var(--t1)';
-  diffLbl.textContent=diff>0?'necesitas aumentar':diff<0?'puedes reducir':'estás en el objetivo';
-  document.getElementById('calc-pct-budget').textContent=pctBudget+'%';
-  document.getElementById('calc-pct-budget').style.color=pctBudget>=100?'var(--danger)':pctBudget>=85?'var(--warn)':'var(--ok)';
-  document.getElementById('calc-pct-note').textContent='de '+fmt(TOTAL)+' presupuesto';
-
-  const tablaEl=document.getElementById('calc-camps-tabla');const noEl=document.getElementById('calc-no-camps');
-  if(!campaigns.length){tablaEl.style.display='none';noEl.style.display='block';}
-  else{
-    tablaEl.style.display='flex';noEl.style.display='none';let html='';
-    if(active.length>0){
-      html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ok);margin-bottom:6px">Campañas activas</div>';
-      html+=active.map(c=>{const peso=totalDaily>0?(c.daily/totalDaily):1/active.length;const sugerido=diarioNecesario*peso;const delta=sugerido-c.daily;const barPct=Math.min(Math.round(peso*100),100);
-        return'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div><div style="font-size:13px;font-weight:500;color:var(--t1)">'+c.name+'</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Actual: '+fmt(c.daily)+'/día · '+barPct+'% del total</div></div><div style="text-align:right"><div style="font-size:18px;font-weight:500;color:var(--gold-l)">'+fmt(sugerido)+'/día</div><div style="font-size:11px;color:'+(delta>=0?'var(--warn)':'var(--ok)')+';margin-top:2px">'+(delta>=0?'+':'')+fmt(delta)+'/día</div></div></div><div style="height:4px;background:var(--ink3);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+barPct+'%;background:var(--gold-d);border-radius:2px"></div></div></div>';
-      }).join('');
-    }
-    if(paused.length>0){html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin:12px 0 6px">Campañas pausadas (no cuentan)</div>';html+=paused.map(c=>'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;opacity:.45"><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;font-weight:500;color:var(--t3)">'+c.name+'</div><div style="font-size:12px;color:var(--t3)">'+fmt(c.daily)+'/día · Pausada</div></div></div>').join('');}
-    tablaEl.innerHTML=html;
-  }
-  const warnEl=document.getElementById('calc-warning');
-  if(objetivo>available){warnEl.style.display='block';document.getElementById('calc-warning-txt').textContent='El objetivo de '+fmt(objetivo)+' supera el disponible restante ('+fmt(available)+'). Ajusta el objetivo o revisa el presupuesto.';}
-  else{warnEl.style.display='none';}
-}
+function renderCampaigns(){const tbody=document.getElementById('campaign-body');const elapsed=daysElapsed();const totalDays=daysTotal();if(!campaigns.length){tbody.innerHTML='<tr><td colspan="8"><div class="empty-state">No hay campañas.</div></td></tr>';return;}tbody.innerHTML=campaigns.map(c=>{const isPaused=c.status==='paused';const spent=isPaused?0:c.daily*elapsed;const projected=c.daily*totalDays;return'<tr style="'+(isPaused?'opacity:.5;':'')+'"><td><div style="font-size:13px;font-weight:500">'+c.name+'</div></td><td>'+phaseLabel(c.phase)+phaseDaysNote(c.phase,c.daysInPhase)+'</td><td style="text-align:center"><select class="status-select" onchange="updateCampStatus(\''+c.id+'\',this.value)" style="font-size:11px;padding:4px 8px"><option value="active" '+(isPaused?'':'selected')+'>Activa</option><option value="paused" '+(isPaused?'selected':'')+'>Pausada</option></select></td><td style="text-align:right"><input class="inline-input" type="number" value="'+c.daily+'" min="1" step="1" onchange="updateDaily(\''+c.id+'\',this.value)" '+(isPaused?'disabled':'')+'></td><td style="text-align:right;font-weight:500;color:'+(isPaused?'var(--t3)':'var(--gold)')+'">'+fmt(spent)+'</td><td style="text-align:right;color:'+(isPaused?'var(--t3)':'var(--gold-l)')+'">'+fmt(projected)+'</td><td style="text-align:center"><button class="scale-btn" onclick="scaleDaily(\''+c.id+'\')" '+(c.phase==='learn'||isPaused?'disabled':'')+'>+25%</button></td><td><div class="action-btns" style="justify-content:center"><button class="icon-btn edit-btn" onclick="openModal(\'campaign\',\''+c.id+'\')"><i class="ti ti-edit" style="font-size:14px"></i></button><button class="icon-btn del-btn" onclick="deleteCampaign(\''+c.id+'\')"><i class="ti ti-trash" style="font-size:14px"></i></button></div></td></tr>';}).join('');}
+function renderExpenses(){const tbody=document.getElementById('expense-body');if(!expenses.length){tbody.innerHTML='<tr><td colspan="6"><div class="empty-state">No hay gastos adicionales.</div></td></tr>';return;}tbody.innerHTML=expenses.map(e=>'<tr><td style="font-size:13px;font-weight:500">'+e.name+'</td><td>'+expTypeLabel(e.type)+'</td><td style="text-align:right;font-weight:500;color:'+expColor(e.type)+'">'+fmt(e.amount)+'</td><td style="text-align:right">'+Math.round(e.amount/TOTAL*100)+'%</td><td style="text-align:center"><select class="status-select" onchange="updateStatus(\''+e.id+'\',this.value)"><option value="pendiente" '+(e.status==='pendiente'?'selected':'')+'>Pendiente</option><option value="pagado" '+(e.status==='pagado'?'selected':'')+'>Pagado</option></select></td><td><div class="action-btns" style="justify-content:center"><button class="icon-btn edit-btn" onclick="openModal(\'expense\',\''+e.id+'\')"><i class="ti ti-edit" style="font-size:14px"></i></button><button class="icon-btn del-btn" onclick="deleteExpense(\''+e.id+'\')"><i class="ti ti-trash" style="font-size:14px"></i></button></div></td></tr>').join('');}
+function renderCampSpendList(){const el=document.getElementById('camp-spend-list');const elapsed=daysElapsed();const active=activeCamps();if(!active.length){el.innerHTML='<div class="empty-state" style="border:1px dashed var(--border);border-radius:var(--r);padding:20px">Agrega campañas activas para ver el gasto acumulado por día.</div>';return;}const totalSpent=active.reduce((s,c)=>s+(c.daily*elapsed),0);el.innerHTML=active.map(c=>{const spent=c.daily*elapsed;const pct=totalSpent>0?Math.round(spent/totalSpent*100):0;const pctOfBudget=Math.round(spent/TOTAL*100);return'<div class="camp-spend-row"><div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--t1)">'+c.name+'</div><div style="font-size:10px;color:var(--t3);margin-top:2px">'+fmt(c.daily)+'/día × '+elapsed+' días · '+pctOfBudget+'% del presupuesto</div><div class="progress-mini"><div class="progress-mini-fill" style="width:'+pct+'%;background:var(--gold-d)"></div></div></div><div style="text-align:right;margin-left:16px"><div style="font-size:18px;font-weight:500;color:var(--gold-l)">'+fmt(spent)+'</div><div style="font-size:10px;color:var(--t3);margin-top:2px">'+pct+'% del total pauta</div></div></div>';}).join('');}
+function renderTimeline(){const totalDays=daysTotal();const elapsed=daysElapsed();const totalExp=expenses.reduce((s,e)=>s+e.amount,0);const totalDaily=activeCamps().reduce((s,c)=>s+c.daily,0);const alertAmt=TOTAL*0.85;if(!totalDays){document.getElementById('timeline-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--t3);font-size:12px;font-style:italic">Define las fechas del período.</div>';return;}const cols=Math.min(totalDays,60);document.getElementById('timeline-grid').style.gridTemplateColumns='repeat('+cols+',1fr)';const daysToAlert=totalDaily>0?Math.ceil((alertAmt-totalExp-realSpent())/totalDaily):null;document.getElementById('tl-today').textContent=elapsed>0&&elapsed<=totalDays?'▼ Día '+elapsed:'';document.getElementById('tl-start').textContent=document.getElementById('period-start').value||'Inicio';document.getElementById('tl-end').textContent=document.getElementById('period-end').value||'Fin';document.getElementById('fc-daily').textContent=fmtD(totalDaily);document.getElementById('fc-camps').textContent=activeCamps().length+' campaña'+(activeCamps().length!==1?'s activas':' activa');const projTotal=realSpent()+totalDaily*daysLeft()+totalExp;document.getElementById('fc-30').textContent=fmt(projTotal);document.getElementById('fc-30').className='f-val '+(projTotal>TOTAL?'danger':projTotal/TOTAL>=0.85?'warn':'ok');document.getElementById('fc-30-note').textContent=projTotal>TOTAL?'⚠ supera el presupuesto en '+fmt(projTotal-TOTAL):'proyección al fin del período';document.getElementById('fc-days').textContent=daysToAlert&&daysToAlert>0?'Día '+Math.min(elapsed+daysToAlert,totalDays):'Sin alerta';document.getElementById('fc-days').className='f-val '+(daysToAlert&&daysToAlert>0?'warn':'ok');let cells='';for(let d=1;d<=cols;d++){const pctCum=(totalExp+totalDaily*d)/TOTAL;let cls='day-cell';if(d<elapsed)cls+=' spent';else if(d===elapsed)cls+=' today';else if(pctCum>=1)cls+=' over';else if(daysToAlert&&d===elapsed+daysToAlert)cls+=' alert85';else if(totalDaily>0)cls+=' projected';else cls+=' future';cells+='<div class="'+cls+'" title="Día '+d+': '+fmt(totalExp+totalDaily*d)+'"></div>';}document.getElementById('timeline-grid').innerHTML=cells;}
+function renderStats(){const totalExp=expenses.reduce((s,e)=>s+e.amount,0);const toolsTotal=expenses.filter(e=>e.type==='tool').reduce((s,e)=>s+e.amount,0);const debtTotal=expenses.filter(e=>e.type==='debt').reduce((s,e)=>s+e.amount,0);const brechaTotal=expenses.filter(e=>e.type==='brecha').reduce((s,e)=>s+e.amount,0);const active=activeCamps();const paused=campaigns.filter(c=>c.status==='paused');const totalDaily=active.reduce((s,c)=>s+c.daily,0);const elapsed=daysElapsed();const left=daysLeft();const total=daysTotal();const spent=realSpent();const totalUsed=spent+totalExp;const projected=spent+totalDaily*left+totalExp;const pctUsed=totalUsed/TOTAL;const remaining=TOTAL-totalUsed;
+checkAndSendAlert(pctUsed,totalUsed);
+document.getElementById('sb-days-elapsed').textContent=elapsed||'—';document.getElementById('sb-days-elapsed').className='sidebar-stat-val ok';document.getElementById('sb-days-left').textContent=left||'—';document.getElementById('sb-days-left').className='sidebar-stat-val '+(left<=3&&left>0?'warn':'ok');document.getElementById('sb-spent-real').textContent=fmt(spent);document.getElementById('sb-spent-real').className='sidebar-stat-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');document.getElementById('sb-pct').textContent=Math.round(pctUsed*100)+'%';document.getElementById('sb-pct').className='sidebar-stat-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');
+if(total>0)document.getElementById('period-info').textContent='Período: '+total+' días · Día '+elapsed+' de '+total+' · '+left+' días restantes';
+document.getElementById('s-spent-real').textContent=fmt(spent);document.getElementById('s-spent-real').className='stat-card-val '+(pctUsed>=1?'danger':pctUsed>=0.85?'warn':'ok');document.getElementById('s-spent-note').textContent=elapsed+' día'+(elapsed!==1?'s':'')+' transcurrido'+(elapsed!==1?'s':'');document.getElementById('s-forecast').textContent=fmt(projected);document.getElementById('s-forecast').className='stat-card-val '+(projected>TOTAL?'danger':projected/TOTAL>=0.85?'warn':'ok');document.getElementById('s-forecast-note').textContent=active.length+' activa'+(active.length!==1?'s':'')+(paused.length>0?' · '+paused.length+' pausada'+(paused.length!==1?'s':''):'');document.getElementById('s-extras').textContent=fmt(totalExp);document.getElementById('s-extras-note').textContent='herramientas '+fmt(toolsTotal)+' · deudas '+fmt(debtTotal)+(brechaTotal>0?' · brecha '+fmt(brechaTotal):'');document.getElementById('s-remaining').textContent=fmt(Math.max(remaining,0));document.getElementById('s-remaining').className='stat-card-val '+(remaining<0?'danger':remaining<TOTAL*0.15?'warn':'ok');document.getElementById('s-remaining-note').textContent='para '+left+' día'+(left!==1?'s':'')+' restante'+(left!==1?'s':'');
+const spentPct=Math.min(spent/TOTAL*100,100);const toolsPct=Math.min(toolsTotal/TOTAL*100,100);const debtPct=Math.min(debtTotal/TOTAL*100,100);const brechaPct=Math.min(brechaTotal/TOTAL*100,100);const freePct=Math.max(100-spentPct-toolsPct-debtPct-brechaPct,0);document.getElementById('bb-spent').style.width=spentPct+'%';document.getElementById('bb-tools').style.width=toolsPct+'%';document.getElementById('bb-debt').style.width=debtPct+'%';document.getElementById('bb-brecha').style.width=brechaPct+'%';document.getElementById('bb-free').style.width=freePct+'%';document.getElementById('leg-spent').textContent='Gastado '+fmt(spent);document.getElementById('leg-tools').textContent='Herramientas '+fmt(toolsTotal);document.getElementById('leg-debt').textContent='Deudas Meta '+fmt(debtTotal);document.getElementById('leg-brecha').textContent='Brecha '+fmt(brechaTotal);document.getElementById('leg-free').textContent='Disponible '+fmt(Math.max(TOTAL-totalUsed,0));
+['alert-85','alert-85b'].forEach(id=>{const el=document.getElementById(id);if(pctUsed>=1){el.classList.remove('visible');}else if(pctUsed>=0.85){el.classList.add('visible');document.getElementById(id+'-txt').textContent='Consumiste el '+Math.round(pctUsed*100)+'% del presupuesto. Quedan '+fmt(TOTAL-totalUsed)+'.';}else{el.classList.remove('visible');}});
+['alert-over','alert-overb'].forEach(id=>{const el=document.getElementById(id);if(projected>TOTAL){el.classList.add('visible');document.getElementById(id+'-txt').textContent='La proyección supera el presupuesto en '+fmt(projected-TOTAL)+'. Ajusta campañas.';}else{el.classList.remove('visible');}});}
+function calcular(){const objetivo=parseFloat(document.getElementById('calc-objetivo').value)||0;const left=daysLeft();const active=activeCamps();const paused=campaigns.filter(c=>c.status==='paused');const totalDaily=active.reduce((s,c)=>s+c.daily,0);const totalExp=expenses.reduce((s,e)=>s+e.amount,0);const available=TOTAL-totalExp-realSpent();document.getElementById('calc-dias-display').textContent=left?left+' días':'— días';if(!objetivo){document.getElementById('calc-resultado').style.display='none';document.getElementById('calc-empty').style.display='block';return;}document.getElementById('calc-resultado').style.display='block';document.getElementById('calc-empty').style.display='none';const dias=left||1;const diarioNecesario=objetivo/dias;const diff=diarioNecesario-totalDaily;const pctBudget=Math.round(objetivo/TOTAL*100);document.getElementById('calc-diario').textContent=fmt(diarioNecesario);document.getElementById('calc-diario-sub').textContent=fmt(objetivo)+' ÷ '+dias+' días restantes';document.getElementById('calc-diario').style.color=objetivo>available?'var(--danger)':objetivo>TOTAL*0.85?'var(--warn)':'var(--gold)';document.getElementById('calc-actual').textContent=fmt(totalDaily)+'/día';document.getElementById('calc-actual-camps').textContent=active.length+' activa'+(active.length!==1?'s':'')+(paused.length>0?' · '+paused.length+' pausada'+(paused.length!==1?'s':''):'');const diffEl=document.getElementById('calc-diff');const diffLbl=document.getElementById('calc-diff-label');diffEl.textContent=(diff>=0?'+':'')+fmt(diff)+'/día';diffEl.style.color=diff>0?'var(--warn)':diff<0?'var(--ok)':'var(--t1)';diffLbl.textContent=diff>0?'necesitas aumentar':diff<0?'puedes reducir':'estás en el objetivo';document.getElementById('calc-pct-budget').textContent=pctBudget+'%';document.getElementById('calc-pct-budget').style.color=pctBudget>=100?'var(--danger)':pctBudget>=85?'var(--warn)':'var(--ok)';document.getElementById('calc-pct-note').textContent='de '+fmt(TOTAL)+' presupuesto';const tablaEl=document.getElementById('calc-camps-tabla');const noEl=document.getElementById('calc-no-camps');if(!campaigns.length){tablaEl.style.display='none';noEl.style.display='block';}else{tablaEl.style.display='flex';noEl.style.display='none';let html='';if(active.length>0){html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ok);margin-bottom:6px">Campañas activas</div>';html+=active.map(c=>{const peso=totalDaily>0?(c.daily/totalDaily):1/active.length;const sugerido=diarioNecesario*peso;const delta=sugerido-c.daily;const barPct=Math.min(Math.round(peso*100),100);return'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div><div style="font-size:13px;font-weight:500;color:var(--t1)">'+c.name+'</div><div style="font-size:10px;color:var(--t3);margin-top:2px">Actual: '+fmt(c.daily)+'/día · '+barPct+'% del total</div></div><div style="text-align:right"><div style="font-size:18px;font-weight:500;color:var(--gold-l)">'+fmt(sugerido)+'/día</div><div style="font-size:11px;color:'+(delta>=0?'var(--warn)':'var(--ok)')+';margin-top:2px">'+(delta>=0?'+':'')+fmt(delta)+'/día</div></div></div><div style="height:4px;background:var(--ink3);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+barPct+'%;background:var(--gold-d);border-radius:2px"></div></div></div>';}).join('');}if(paused.length>0){html+='<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin:12px 0 6px">Campañas pausadas (no cuentan)</div>';html+=paused.map(c=>'<div style="background:var(--ink);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;opacity:.45"><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;font-weight:500;color:var(--t3)">'+c.name+'</div><div style="font-size:12px;color:var(--t3)">'+fmt(c.daily)+'/día · Pausada</div></div></div>').join('');}tablaEl.innerHTML=html;}const warnEl=document.getElementById('calc-warning');if(objetivo>available){warnEl.style.display='block';document.getElementById('calc-warning-txt').textContent='El objetivo de '+fmt(objetivo)+' supera el disponible restante ('+fmt(available)+'). Ajusta el objetivo.';}else{warnEl.style.display='none';}}
 window.calcular=calcular;
-
-// ─── RENDER ALL ──────────────────────────────────────────────────
-function renderAll(){
-  renderStats();
-  renderCampaigns();
-  renderExpenses();
-  renderCampSpendList();
-  const ap=document.querySelector('.panel.active');
-  if(ap&&ap.id==='panel-forecast')renderTimeline();
-  if(ap&&ap.id==='panel-calc')calcular();
-}
-
-// ─── FIREBASE LISTENERS ──────────────────────────────────────────
+function renderAll(){renderStats();renderCampaigns();renderExpenses();renderCampSpendList();const ap=document.querySelector('.panel.active');if(ap&&ap.id==='panel-forecast')renderTimeline();if(ap&&ap.id==='panel-calc')calcular();}
 let campaignsReady=false,expensesReady=false;
 function checkReady(){if(campaignsReady&&expensesReady){document.getElementById('loading-screen').style.display='none';renderAll();}}
-
 onSnapshot(collection(db,'campaigns'),(snapshot)=>{campaigns=snapshot.docs.map(d=>({id:d.id,...d.data()}));campaignsReady=true;checkReady();if(campaignsReady&&expensesReady)renderAll();},(err)=>{setSyncing('error');console.error(err);});
 onSnapshot(collection(db,'expenses'),(snapshot)=>{expenses=snapshot.docs.map(d=>({id:d.id,...d.data()}));expensesReady=true;checkReady();if(campaignsReady&&expensesReady)renderAll();},(err)=>{setSyncing('error');console.error(err);});
-
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-// Load period config on startup
 loadPeriod();
-
-// Auto-refresh daily at midnight
 const now=new Date();const tomorrow=new Date(now);tomorrow.setDate(tomorrow.getDate()+1);tomorrow.setHours(0,1,0,0);
 setTimeout(()=>{renderAll();setInterval(renderAll,1000*60*60*24);},tomorrow-now);
 </script>
